@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agoritmos de Busqueda</title>
+  </head>
+  <body>
+    <main class="flex flex-col just-center align-center">
+      <h1>Algoritmos de Busqueda</h1>
+      <section class="rounded shadow form-section">
+        <h2>Calcular Recorrido</h2>
+        <form class="flex flex-col">
+          <label for="origen-input">Nodo Origen</label>
+          <input
+            type="text"
+            name="origen"
+            id="origen-input"
+            class="rounded"
+            autocomplete="off"
+            placeholder="1"
+            required
+          />
+          <p id="error-origen" class="hide"></p>
+          <label for="destino-input" class="mt-8">Nodo Destino</label>
+          <input
+            type="text"
+            name="destino"
+            id="destino-input"
+            class="rounded"
+            autocomplete="off"
+            placeholder="20"
+            required
+          />
+          <p id="error-destino" class="hide"></p>
+          <label for="select-algoritmo" class="mt-8">Algoritmo</label>
+          <select name="algoritmo" id="select-algoritmo" class="rounded">
+            <option value="BFS" selected>Busqueda a lo Ancho</option>
+            <option value="DFS">Busqueda en Profundidad</option>
+            <option value="HC">Busqueda por Escala Simple</option>
+            <option value="MSC">Busqueda por Escalada Máxima Pendiente</option>
+            <option value="BF">Busqueda Primero el Mejor</option>
+          </select>
+          <label for="sentido-horario">Sentido</label>
+          <select name="sentido" id="sentido-horario" class="rounded">
+            <option value="horario">Sentido Horario</option>
+            <option value="anti-horario">Sentido Antihorario</option>
+          </select>
+          <button type="submit" class="rounded mt-24">Calcular</button>
+        </form>
+      </section>
+      <section class="rounded shadow mt-32 hide">
+        <h2>Solución</h2>
+      </section>
+      <section
+        class="flex flex-col just-center align-center rounded shadow mt-32"
+      >
+        <h2>Información del Grafo</h2>
+        <figure>
+          <img src="./Grafo.webp" alt="Grafo del problema" />
+          <figcaption>Grafo Problema</figcaption>
+        </figure>
+        <table>
+          <caption>
+            Costos de Viaje
+          </caption>
+          <thead>
+            <tr id="titulo-tabla"></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
