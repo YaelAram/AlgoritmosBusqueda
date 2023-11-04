@@ -3,8 +3,6 @@ export interface Grafo {
 }
 
 export interface Nodo {
-  nombre: string;
-  visitado: boolean;
   conexiones: Conexion[];
   orden: string[];
 }
@@ -20,4 +18,9 @@ export interface Costos {
 
 export interface Costo {
   [k: string]: number;
+}
+
+export interface Recorrido {
+  nombre: string;
+  predecesor: string;
 }

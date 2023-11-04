@@ -50,8 +50,15 @@
           <button type="submit" class="rounded mt-24">Calcular</button>
         </form>
       </section>
-      <section class="rounded shadow mt-32 hide">
+      <section class="rounded shadow mt-32 hide" id="solucion-section">
         <h2>Solución</h2>
+        <table>
+          <caption>
+            Recorrido Solución:
+            <span id="ruta"></span>
+          </caption>
+          <tbody id="tabla-solucion"></tbody>
+        </table>
       </section>
       <section
         class="flex flex-col just-center align-center rounded shadow mt-32"
@@ -68,7 +75,7 @@
           <thead>
             <tr id="titulo-tabla"></tr>
           </thead>
-          <tbody></tbody>
+          <tbody id="tabla-costos"></tbody>
         </table>
       </section>
     </main>

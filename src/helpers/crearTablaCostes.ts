@@ -1,7 +1,8 @@
 import { costos } from "../data";
 
 const titulos: HTMLTableRowElement = document.querySelector("#titulo-tabla")!;
-const cuerpoTabla: HTMLTableSectionElement = document.querySelector("tbody")!;
+const cuerpoTabla: HTMLTableSectionElement =
+  document.querySelector("#tabla-costos")!;
 
 const crearTitulos = () => {
   const titulosTabla = Object.keys(costos)
