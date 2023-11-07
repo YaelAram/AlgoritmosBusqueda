@@ -208,3 +208,7 @@ button:active {
 span {
   color: var(--governor-bay-300);
 }
+
+.solucion {
+  width: 90%;
+}

@@ -26,7 +26,7 @@ const crearCuerpoTabla = () => {
     for (let claveDestino in costo) {
       tabla[
         Number(claveDestino) - 1
-      ] += `<td title="De: ${claveDestino}  A: ${claveOrigen}">${costo[claveDestino]}</td>`;
+      ] += `<td title="De: ${claveOrigen}  A: ${claveDestino}">${costo[claveDestino]}</td>`;
     }
   }
 

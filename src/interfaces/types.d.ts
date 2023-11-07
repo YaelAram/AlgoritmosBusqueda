@@ -4,7 +4,6 @@ export interface Grafo {
 
 export interface Nodo {
   conexiones: Conexion[];
-  orden: string[];
 }
 
 export interface Conexion {
@@ -23,4 +22,9 @@ export interface Costo {
 export interface Recorrido {
   nombre: string;
   predecesor: string;
+}
+
+export interface NodoRecorrido {
+  nombre: string;
+  coste: number;
 }

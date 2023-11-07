@@ -1,8 +1,7 @@
-import { grafo } from "../data";
-import { crearTablaSolucion } from "../helpers";
+import { crearTablaSolucionBfsDfs, obtenerNodosPorVisitar } from "../helpers";
 import { type Recorrido } from "../interfaces/types";
 
-export const BFS = (origen: string, destino: string) => {
+export const BFS = (origen: string, destino: string, sentido: string) => {
   const nodosVisitados = new Set<string>();
   const nodosPorVisitar: Recorrido[] = [{ nombre: origen, predecesor: "" }];
   const arbolVisita = new Map<string, string>();
@@ -14,20 +13,26 @@ export const BFS = (origen: string, destino: string) => {
     arbolVisita.set(nodoVisitado.nombre, nodoVisitado.predecesor);
 
     nodosPorVisitar.push(
-      ...grafo[nodoVisitado.nombre].conexiones
-        .filter(
-          (conexion) =>
-            !nodosVisitados.has(conexion.destino) &&
-            !nodosPorVisitar.some((nodo) => nodo.nombre === conexion.destino)
-        )
-        .map((conexion) => ({
-          nombre: conexion.destino,
-          predecesor: nodoVisitado.nombre,
-        }))
+      ...obtenerNodosPorVisitar(
+        nodoVisitado,
+        nodosVisitados,
+        nodosPorVisitar,
+        sentido
+      )
     );
   }
 
-  let nodoActual = arbolVisita.get(destino)!;
+  let nodoActual = arbolVisita.get(destino);
+
+  if (nodoActual === undefined) {
+    crearTablaSolucionBfsDfs(
+      Array.from(arbolVisita.entries()),
+      `No existe camino posible entre el nodo ${origen} (origen) y el nodo ${destino} (destino)`
+    );
+
+    return;
+  }
+
   let ruta = [destino];
 
   while (true) {
@@ -37,8 +42,8 @@ export const BFS = (origen: string, destino: string) => {
     nodoActual = arbolVisita.get(nodoActual)!;
   }
 
-  crearTablaSolucion(
+  crearTablaSolucionBfsDfs(
     Array.from(arbolVisita.entries()),
-    ruta.reverse().join(" -> ")
+    ruta.reverse().join(" → ")
   );
 };

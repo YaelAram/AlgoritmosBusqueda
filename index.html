@@ -38,7 +38,6 @@
           <select name="algoritmo" id="select-algoritmo" class="rounded">
             <option value="BFS" selected>Busqueda a lo Ancho</option>
             <option value="DFS">Busqueda en Profundidad</option>
-            <option value="HC">Busqueda por Escala Simple</option>
             <option value="MSC">Busqueda por Escalada Máxima Pendiente</option>
             <option value="BF">Busqueda Primero el Mejor</option>
           </select>
@@ -50,9 +49,12 @@
           <button type="submit" class="rounded mt-24">Calcular</button>
         </form>
       </section>
-      <section class="rounded shadow mt-32 hide" id="solucion-section">
+      <section
+        class="flex flex-col just-center align-center rounded shadow mt-32 hide solucion"
+        id="solucion-section"
+      >
         <h2>Solución</h2>
-        <table>
+        <table class="solucion">
           <caption>
             Recorrido Solución:
             <span id="ruta"></span>
