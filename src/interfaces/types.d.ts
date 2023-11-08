@@ -28,3 +28,11 @@ export interface NodoRecorrido {
   nombre: string;
   coste: number;
 }
+
+export interface NodoBf {
+  antecesor: string;
+  nodo: string;
+  coste: number;
+  costeArco: number;
+  heuristica: number;
+}

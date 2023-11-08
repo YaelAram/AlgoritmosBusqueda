@@ -1,5 +1,5 @@
 import {
-  creaTablaSolucionMscBf,
+  creaTablaSolucionMsc,
   obtenerCosto,
   obtenerMejorNodo,
 } from "../helpers";
@@ -18,7 +18,13 @@ export const MSC = (origen: string, destino: string, sentido: string) => {
   while (nodoActual.nombre !== destino) {
     const mejorNodo = obtenerMejorNodo(nodoActual, destino, sentido);
 
-    if (mejorNodo === undefined) break;
+    if (mejorNodo === undefined) {
+      creaTablaSolucionMsc(
+        tabla,
+        `No existe camino posible entre el nodo ${origen} (origen) y el nodo ${destino} (destino)`
+      );
+      break;
+    }
 
     ruta.push(mejorNodo.nombre);
 
@@ -26,5 +32,5 @@ export const MSC = (origen: string, destino: string, sentido: string) => {
     nodoActual = mejorNodo;
   }
 
-  creaTablaSolucionMscBf(tabla, ruta.join(" → "));
+  creaTablaSolucionMsc(tabla, ruta.join(" → "));
 };

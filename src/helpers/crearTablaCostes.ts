@@ -24,9 +24,11 @@ const crearCuerpoTabla = () => {
 
     tabla[Number(claveOrigen) - 1] += `<td title="Mismo Nodo">0</td>`;
     for (let claveDestino in costo) {
+      const costoLbl =
+        costo[claveDestino] === Infinity ? "∞" : costo[claveDestino];
       tabla[
         Number(claveDestino) - 1
-      ] += `<td title="De: ${claveOrigen}  A: ${claveDestino}">${costo[claveDestino]}</td>`;
+      ] += `<td title="De: ${claveOrigen}  A: ${claveDestino}">${costoLbl}</td>`;
     }
   }
 

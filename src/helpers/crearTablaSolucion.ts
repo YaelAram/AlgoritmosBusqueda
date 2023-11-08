@@ -1,4 +1,4 @@
-import { type NodoRecorrido } from "../interfaces/types";
+import type { NodoBf, NodoRecorrido } from "../interfaces/types";
 
 const tabla: HTMLTableSectionElement =
   document.querySelector("#tabla-solucion")!;
@@ -29,7 +29,7 @@ export const crearTablaSolucionBfsDfs = (
   );
 };
 
-export const creaTablaSolucionMscBf = (
+export const creaTablaSolucionMsc = (
   recorrido: NodoRecorrido[],
   ruta: string
 ) => {
@@ -50,5 +50,41 @@ export const creaTablaSolucionMscBf = (
   tabla.insertAdjacentHTML(
     "afterbegin",
     nodos.concat("</tr>", distancia, "</tr>")
+  );
+};
+
+export const crearTablaSolucionBf = (ruta: string, recorrido: NodoBf[]) => {
+  seccion.classList.remove("hide");
+
+  rutaSpan.innerText = ruta;
+
+  let antecesores = "<tr><td>Antecesor</td>";
+  let nodos = "<tr><td>Nodo</td>";
+  let distancias = "<tr><td>Distancia</td>";
+  let costos = "<tr><td>Costo Arco</td>";
+  let heuristicas = "<tr><td>Heuristica</td>";
+
+  for (const { antecesor, nodo, coste, costeArco, heuristica } of recorrido) {
+    antecesores = antecesores.concat(`<td>${antecesor}</td>`);
+    nodos = nodos.concat(`<td>${nodo}</td>`);
+    distancias = distancias.concat(`<td>${coste}</td>`);
+    costos = costos.concat(`<td>${costeArco}</td>`);
+    heuristicas = heuristicas.concat(`<td>${heuristica}</td>`);
+  }
+
+  tabla.textContent = "";
+  tabla.insertAdjacentHTML(
+    "afterbegin",
+    antecesores.concat(
+      "</tr>",
+      nodos,
+      "</tr>",
+      distancias,
+      "</tr>",
+      costos,
+      "</tr>",
+      heuristicas,
+      "</tr>"
+    )
   );
 };

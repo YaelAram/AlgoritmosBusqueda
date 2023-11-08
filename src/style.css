@@ -132,6 +132,7 @@ th {
   color: var(--governor-bay-200);
   padding: 4px 6px;
   cursor: help;
+  font-size: small;
 }
 
 tbody tr:nth-child(even) {
