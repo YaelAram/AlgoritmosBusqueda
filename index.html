@@ -7,12 +7,23 @@
     <title>Agoritmos de Busqueda</title>
   </head>
   <body>
+    <!-- El elemento MAIN tiene el contenido principal de nuestra pagina, los estilos que le asignamos nos ayudan
+    a centrar horizontal y verticalmente su contendio -->
     <main class="flex flex-col just-center align-center">
+      <!-- Establecemos el titulo principal de nuestra pagina -->
       <h1>Algoritmos de Busqueda</h1>
+      <!-- El siguiente elemento SECTION contiene el formulario que permite al usuario elegir el nodo origen, el
+      nodo destino, el algoritmo de busqueda a utilizar y el sentido de recorrido de los nodos vecinos -->
       <section class="rounded shadow form-section">
+        <!-- Indicamos el titulo de la seccion -->
         <h2>Calcular Recorrido</h2>
+        <!-- Declaramos el formulario de nuestra aplicacion -->
         <form class="flex flex-col">
+          <!-- Declaramos un elemento LABEL con un texto que indica el contendio del campo de texto, con el atributo
+          FOR lo ligamos al campo de texto, el valor del atributo FOR es el mismo que el del atributo ID del
+          campo de texto -->
           <label for="origen-input">Nodo Origen</label>
+          <!-- Creamos el campo de texto donde el usuario debe ingresar el nodo origen -->
           <input
             type="text"
             name="origen"
@@ -22,8 +33,14 @@
             placeholder="1"
             required
           />
+          <!-- Esta etiqueta P esta por default oculta, se muestra solo en caso de que el usuario ingrese un valor
+          no valido e indica al usuario el error, se oculta de nuevo si el valor recibido es valido -->
           <p id="error-origen" class="hide"></p>
+          <!-- Declaramos un elemento LABEL con un texto que indica el contendio del campo de texto, con el atributo
+          FOR lo ligamos al campo de texto, el valor del atributo FOR es el mismo que el del atributo ID del
+          campo de texto -->
           <label for="destino-input" class="mt-8">Nodo Destino</label>
+          <!-- Creamos el campo de texto donde el usuario indica el nodo destino -->
           <input
             type="text"
             name="destino"
@@ -33,50 +50,85 @@
             placeholder="20"
             required
           />
+          <!-- Esta etiqueta P esta por default oculta, se muestra solo en caso de que el usuario ingrese un valor
+          no valido e indica al usuario el error, se oculta de nuevo si el valor recibido es valido -->
           <p id="error-destino" class="hide"></p>
+          <!-- Declaramos un elemento LABEL con un texto que indica el contendio del menu desplegable, con el atributo
+          FOR lo ligamos a la menu desplegable, el valor del atributo FOR es el mismo que el del atributo ID del
+          menu desplegable -->
           <label for="select-algoritmo" class="mt-8">Algoritmo</label>
+          <!-- Creamos el menu desplegable con el cual el usuario decide que algoritmo de busqueda utilizar -->
           <select name="algoritmo" id="select-algoritmo" class="rounded">
+            <!-- Opcion de Algoritmo de Busqueda a lo Ancho es la opcion por defecto -->
             <option value="BFS" selected>Busqueda a lo Ancho</option>
+            <!-- Opcion de Algoritmo de Busqueda en Profundidad -->
             <option value="DFS">Busqueda en Profundidad</option>
+            <!-- Opcion de Algoritmo de Busqueda por Escalada Maxima Pendiente -->
             <option value="MSC">Busqueda por Escalada Máxima Pendiente</option>
+            <!-- Opcion de Algoritmo de Busqueda Primero el Mejor -->
             <option value="BF">Busqueda Primero el Mejor</option>
           </select>
+          <!-- Declaramos un elemento LABEL con un texto que indica el contendio del lista desplegable, con el atributo
+          FOR lo ligamos a la lista desplegable, el valor del atributo FOR es el mismo que el del atributo ID del
+          lista desplegable -->
           <label for="sentido-horario">Sentido</label>
+          <!-- Creamos una lista desplegable para que el usuario elija el sentido en el que deben ser recorridas
+          las conexiones de un nodo -->
           <select name="sentido" id="sentido-horario" class="rounded">
-            <option value="horario">Sentido Horario</option>
+            <!-- Opcion de recorrido de conexiones en sentido horario esta es la opcion por defecto -->
+            <option value="horario" selected>Sentido Horario</option>
+            <!-- Opcion de recorrido de conexiones en sentido antihorario -->
             <option value="anti-horario">Sentido Antihorario</option>
           </select>
+          <!-- Con este boton enviamos el contenido del formulario a una funcion del algoritmo de busqueda -->
           <button type="submit" class="rounded mt-24">Calcular</button>
         </form>
       </section>
+      <!-- El siguiente elemento SECTION muestra la solucion generada por los diferentes algoritmos, el contenido
+      varia segun el algoritmo -->
       <section
         class="flex flex-col just-center align-center rounded shadow mt-32 hide solucion"
         id="solucion-section"
       >
+        <!-- Indicamos el titulo de la seccion -->
         <h2>Solución</h2>
+        <!-- El siguiente elemento TABLE contiene la informacion de recorrido de la solucion creada por el algoritmo
+        de busqueda -->
         <table class="solucion">
+          <!-- Creamos un titulo para la tabla -->
           <caption>
             Recorrido Solución:
+            <!-- Dentro del elemento SPAN insertamos la ruta generada por el algoritmo -->
             <span id="ruta"></span>
           </caption>
+          <!-- Dentro del elemento TBODY el algoritmo inserta la informacion calculada -->
           <tbody id="tabla-solucion"></tbody>
         </table>
       </section>
+      <!-- EL siguiente elemento SECTION contiene la informacion general del grafo problema -->
       <section
         class="flex flex-col just-center align-center rounded shadow mt-32"
       >
+        <!-- Indicamos el titulo de la seccion -->
         <h2>Información del Grafo</h2>
+        <!-- Declaramos un elemento FIGURE para contener la imagen de nuestro grafo y el titulo de la imagen -->
         <figure>
+          <!-- Insertamos la imagen del grafo -->
           <img src="./Grafo.webp" alt="Grafo del problema" />
+          <!-- Insertamos el titulo de nuestra imagen -->
           <figcaption>Grafo Problema</figcaption>
         </figure>
+        <!-- Declaramos un elemento TABLE el cual contiene la informacion de costos entre los nodos del grafo -->
         <table>
+          <!-- Creamos un titulo para la tabla -->
           <caption>
             Costos de Viaje
           </caption>
+          <!-- Creamos la fila de celdas de la tabla que contendra los titulos de columna -->
           <thead>
             <tr id="titulo-tabla"></tr>
           </thead>
+          <!-- Creamos el elemento TBODY donde un funcion insertara la informacion de costos -->
           <tbody id="tabla-costos"></tbody>
         </table>
       </section>

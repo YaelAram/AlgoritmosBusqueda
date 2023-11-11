@@ -1,4 +1,6 @@
 /* Paleta de Colores */
+
+/* Declaramos la paleta de colores de nuestra aplicacion */
 :root {
   --governor-bay-50: #eef4ff;
   --governor-bay-100: #e1eafe;
@@ -15,47 +17,59 @@
 }
 
 /* Estilos Generales */
+/* Esta clase CSS provoca bordes redondeados en un elemento  */
 .rounded {
   border-radius: 8px;
 }
 
+/* Es clase provoca un efecto de sombra */
 .shadow {
   box-shadow: var(--governor-bay-500) 0px 3px 8px;
 }
 
+/* Es clase provoca que el contenedor utilice el sistema flexbox, con ello podemos organizar facilmente los elementos
+que esten dentro del contenedor */
 .flex {
   display: flex;
 }
 
+/* Organizamos los elementos del contenedor flexbox en forma de fila (eje principal horizontal) */
 .flex-row {
   flex-direction: row;
 }
 
+/* Organizamos los elementos del contenedor flexbox en forma de columna (eje principal vertical) */
 .flex-col {
   flex-direction: column;
 }
 
+/* Alineamos al centro los elementos del contenedor respecto al eje principal */
 .just-center {
   justify-content: center;
 }
 
+/* Alineamos al centro los elementos del contenedor respecto al eje secundario */
 .align-center {
   align-items: center;
 }
 
+/* Aplicamos una separacion de 8px entre el elemento y el otro elemento que este arriba de el */
 .mt-8 {
   margin-top: 8px;
 }
 
+/* Aplicamos una separacion de 24px entre el elemento y el otro elemento que este arriba de el */
 .mt-24 {
   margin-top: 24px;
 }
 
+/* Aplicamos una separacion de 32px entre el elemento y el otro elemento que este arriba de el */
 .mt-32 {
   margin-top: 32px;
 }
 
 /* Estilos Compartidos */
+/* Aplicamos un estilo de fuente y espaciado entre letras y palabras a las siguientes etiquetas */
 h1,
 h2,
 label,
@@ -73,11 +87,13 @@ p {
   word-spacing: 2px;
 }
 
+/* Cambiamos el color de fondo de la pagina y alejamos el contenido de la pagina de los bordes de la ventana del navegador */
 body {
   background-color: var(--zinc-900);
   margin: 8px 16px 40px;
 }
 
+/* Alineamos el texto de los siguientes elementos al centro */
 h1,
 h2,
 figcaption,
@@ -86,11 +102,15 @@ td {
   text-align: center;
 }
 
+/* Cambiamos el color de fuente de los elementos de titulo, el color elegido es el que mas contrasta
+respecto al color de fondo para hacer notar aun mas el contenido de estos elementos */
 h1,
 h2 {
   color: var(--governor-bay-50);
 }
 
+/* Cambiamos el color de fuente de los sigueintes elementos, la fuente es de menor tamaño, con un estilo de cursiva
+y con un color que no contrasta tanto con el color de fondo ya que son elementos secundarios de la interfaz de usuario */
 label,
 figcaption,
 p {
@@ -100,54 +120,65 @@ p {
   font-size: medium;
 }
 
+/* Agragamos espacio de separacion entre el contenido de los elementos SECTION y los bordes izquierdo y derecho */
 section {
   padding: 0 16px;
 }
 
 /* Sección de Grafo */
+/* Ajustamos el ancho de la imagen del grafo */
 img {
   width: 600px;
 }
 
+/* Aumentamos el tamaño de fuente, cambiamos el color y grosor de la fuente del titulo de las tablas */
 caption {
   font-size: larger;
   font-weight: bold;
   color: var(--governor-bay-400);
 }
 
+/* Agregamos espacio entre los bordes de la tabla y el contenido de esta */
 table {
   padding: 16px;
 }
 
+/* Cambiamos el color de fondo de la fila de la tabla que contiene los titulos de columna */
 thead tr {
   background-color: var(--governor-bay-900);
 }
 
+/* Cambiamos el color de fuente de los titulos de columna de la tabla */
 .title {
   background-color: var(--governor-bay-900);
 }
 
+/* Cambiamos el color de fuente y reducimos el tamaño de fuente de las celdas de la tabla que no son los titulos de columna */
 td,
 th {
   color: var(--governor-bay-200);
   padding: 4px 6px;
-  cursor: help;
   font-size: small;
 }
 
+/* Cambiamos el color de fondo de las filas impares de la tabla para mejorar la lectura de la tabla */
 tbody tr:nth-child(even) {
   background-color: var(--governor-bay-600);
 }
 
 /* Sección de Formulario */
+/* Agragamos espacio entre el formulario y la seccion que lo envuelve, 16px a los lados y 24px en el borde inferior */
 .form-section {
   padding: 0 16px 24px;
 }
 
+/* Reducimos el espacio de separacion entre el elemento LABEL y los elementos que lo rodean */
 label {
   margin: 0 0 4px 8px;
 }
 
+/* Cambiamos el color de fondo, aumentamos el tamaño de fuente, cambiamos el color de fuente, modificamos el color y
+grosor de borde y espacio entre el contenido de los elementos INPUT y LABEL y sus bordes */
 input,
 select {
   background-color: transparent;
@@ -158,20 +189,26 @@ select {
   outline: none;
 }
 
+/* Cambiamos el color de fuente del placeholder de los elementos input */
 input::placeholder {
   color: var(--governor-bay-300);
 }
 
+/* Quitamos parte del espacio entre la etiqueta P y los elementos que lo rodean */
 p {
   margin-block: 0;
   margin-left: 8px;
 }
 
+/* Cambiamos el color de fondo de fuente y de fondo de los elemento del menu desplegable */
 option {
   color: var(--governor-bay-500);
   background-color: var(--zinc-900);
 }
 
+/* Aumentamos el espacio de separacion entre los bordes del boton y el texto que contiene, aumentamos el tamaño
+de fuente, ponemos un estilo de fuente en negrita, el color de fondo es un gradiente (degradado) entre dos tonos de azul
+y cambiamos el color de fuente */
 button {
   padding: 12px;
   font-size: larger;
@@ -185,6 +222,7 @@ button {
   color: var(--governor-bay-950);
 }
 
+/* Cambiamos el color de fondo a un gradiente (degradado) con dos tonos de azul mas claros */
 button:hover {
   background: linear-gradient(
     to bottom right,
@@ -193,6 +231,7 @@ button:hover {
   );
 }
 
+/* Cambiamos el color de fondo a un gradiente (degradado) con dos tonos de azul mas obscuros */
 button:active {
   background: linear-gradient(
     to bottom right,
@@ -202,14 +241,17 @@ button:active {
 }
 
 /* Sección Solución */
+/* Con esta clase CSS ocultamos el elemento HTML */
 .hide {
   display: none;
 }
 
+/* Cambiamos el color de fuente de los elementos SPAN */
 span {
   color: var(--governor-bay-300);
 }
 
+/* Establecemos el ancho del contenedor con la solucion del problema a un 90% del ancho de la ventana del navegador */
 .solucion {
   width: 90%;
 }

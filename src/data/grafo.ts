@@ -1,9 +1,12 @@
 import { type Grafo } from "../interfaces/types";
 
+/* La constante grafo contiene la lista de adyacencia del grafo, donde cada elemento del atributo 'conexiones'
+esta ordenado en sentido horario e indica el costo de arco para ir del nodo destino al nodo de conexion */
 export const grafo: Grafo = {
   "1": {
+    // Nombre del nodo actual
     conexiones: [
-      { destino: "6", coste: 117 },
+      { destino: "6", coste: 117 }, // Nombre del nodo destino y el costo de ir del nodo actual al nodo destino
       { destino: "13", coste: 699 },
       { destino: "4", coste: 701 },
     ],
