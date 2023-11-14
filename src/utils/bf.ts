@@ -84,8 +84,9 @@ export const BF = (origen: string, destino: string, sentido: string) => {
   if (nodoRuta === undefined) {
     // Mostramos el recorrido y un mensaje indicando que no existe camino que conecte el nodo origen y destino
     crearTablaSolucionBf(
-      `No existe camino posible entre el nodo ${origen} (origen) y el nodo ${destino} (destino)`,
-      recorrido
+      [],
+      recorrido,
+      `No existe camino posible entre el nodo ${origen} (origen) y el nodo ${destino} (destino)`
     );
     return;
   }
@@ -104,5 +105,5 @@ export const BF = (origen: string, destino: string, sentido: string) => {
   }
 
   // Mostramos el recorrido y un string con la ruta que conecta el nodo origen y el destino
-  crearTablaSolucionBf(ruta.join(" → "), recorrido);
+  crearTablaSolucionBf(ruta, recorrido);
 };

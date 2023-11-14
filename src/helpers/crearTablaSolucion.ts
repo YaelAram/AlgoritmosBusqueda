@@ -40,32 +40,33 @@ export const crearTablaSolucionBfsDfs = (
   }
 
   // Insertamos el contenido HTML
-  tabla.insertAdjacentHTML(
-    "afterbegin",
-    predecesores.concat("</tr>", nodos, "</tr>")
-  );
+  tabla.insertAdjacentHTML("afterbegin", `${predecesores}</tr>${nodos}</tr>`);
 };
 
 /*
   Esta funcion se encarga de crear la tabla y ruta solucion para el Algoritmo por Maxima Pendiente
     recorrido: Contiene el recorrido generado por el algoritmo
     ruta: Contiene la ruta generada por el algoritmo
+    error: Es un mensaje de error opcional
 
   No retorna nada
 */
 export const creaTablaSolucionMsc = (
   recorrido: NodoRecorrido[],
-  ruta: string
+  ruta: string[],
+  error: string = ""
 ) => {
   // Mostramos la ruta calculada
   seccion.classList.remove("hide");
 
   // Insertamos la ruta dentro del elemento SPAN
-  rutaSpan.innerText = ruta;
+  rutaSpan.innerText = !error ? ruta.join(" → ") : error;
 
   // Eliminamos el contenido anterior de la tabla
   tabla.textContent = "";
 
+  // Creamos una variable para contener la informacion que indica si el nodo fue visitado
+  let visitados = "<tr><td>¿Visitado?</td>";
   // Creamos una variable para contener la informacion de los nodos actuales
   let nodos = "<tr><td>Nodo</td>";
   // Creamos una variable para contener la informacion de distancia respecto al nodo destino
@@ -73,6 +74,9 @@ export const creaTablaSolucionMsc = (
 
   // Iteramos sobre la variable recorrido
   for (const { nombre, coste } of recorrido) {
+    visitados = visitados.concat(
+      `<td>${ruta.includes(nombre) ? "Si" : "No"}</td>`
+    );
     nodos = nodos.concat(`<td>${nombre}</td>`); // Insertamos la nueva celda de la fila de nodos
     distancia = distancia.concat(`<td>${coste}</td>`); // Insertamos la nueva celda de la fila de distancias
   }
@@ -80,7 +84,7 @@ export const creaTablaSolucionMsc = (
   // Insertamos el contenido HTML
   tabla.insertAdjacentHTML(
     "afterbegin",
-    nodos.concat("</tr>", distancia, "</tr>")
+    `${visitados}</tr>${nodos}</tr>${distancia}</tr>`
   );
 };
 
@@ -88,16 +92,23 @@ export const creaTablaSolucionMsc = (
   Esta funcion se encarga de crear la tabla y ruta solucion para el Algoritmo Primero el Mejor
     ruta: Contiene la ruta generada por el algoritmo
     recorrido: Contiene el recorrido generado por el algoritmo
+    error: Es un mensaje de error opcional
 
   No retorna nada
 */
-export const crearTablaSolucionBf = (ruta: string, recorrido: NodoBf[]) => {
+export const crearTablaSolucionBf = (
+  ruta: string[],
+  recorrido: NodoBf[],
+  error: string = ""
+) => {
   // Mostramos la ruta calculada
   seccion.classList.remove("hide");
 
   // Insertamos la ruta dentro del elemento SPAN
-  rutaSpan.innerText = ruta;
+  rutaSpan.innerText = !error ? ruta.join(" → ") : error;
 
+  // Creamos una variable para contener la informacion que indica si el nodo fue visitado
+  let visitados = "<tr><td>¿Visitado?</td>";
   // Creamos una variable para contener la informacion de los nodos antecesores
   let antecesores = "<tr><td>Antecesor</td>";
   // Creamos una variable para contener la informacion de los nodos actuales
@@ -109,8 +120,13 @@ export const crearTablaSolucionBf = (ruta: string, recorrido: NodoBf[]) => {
   // Creamos una variable para contener la informacion de la suma de la distancia y el costo de arco
   let heuristicas = "<tr><td>Heuristica</td>";
 
+  console.log(`a`);
   // Iteramos sobre la variable recorrido
   for (const { antecesor, nodo, coste, costeArco, heuristica } of recorrido) {
+    console.log(`${nodo}: ${ruta.includes(nodo)}`);
+    visitados = visitados.concat(
+      `<td>${ruta.includes(nodo) ? "Si" : "No"}</td>`
+    );
     antecesores = antecesores.concat(`<td>${antecesor}</td>`);
     nodos = nodos.concat(`<td>${nodo}</td>`);
     distancias = distancias.concat(`<td>${coste}</td>`);
@@ -123,7 +139,9 @@ export const crearTablaSolucionBf = (ruta: string, recorrido: NodoBf[]) => {
   // Insertamos el contenido HTML
   tabla.insertAdjacentHTML(
     "afterbegin",
-    antecesores.concat(
+    visitados.concat(
+      "</tr>",
+      antecesores,
       "</tr>",
       nodos,
       "</tr>",

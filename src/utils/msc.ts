@@ -16,6 +16,8 @@ import { NodoRecorrido } from "../interfaces/types";
 export const MSC = (origen: string, destino: string, sentido: string) => {
   // Iniciamos un lista con todos los nodos que pertenecen a la ruta que conecta el nodo origen y destino
   const ruta: string[] = [origen];
+  // Contiene los nodos que ya han sido visitados por el algoritmo
+  const nodosVisitados = new Set<string>();
   // Contiene los nodos en el orden en el que fueron recorridos
   const tabla: NodoRecorrido[] = [];
   // Contiene la informacion del nodo actual
@@ -26,17 +28,28 @@ export const MSC = (origen: string, destino: string, sentido: string) => {
 
   // Agregamos el nodo actual a la lista de nodos recorridos
   tabla.push(nodoActual);
+  // Agregamos el nodo actual a la lista de nodos visitados
+  nodosVisitados.add(nodoActual.nombre);
 
   // Iteramos mientras el nombre del nodo actual sea diferente al nombre del nodo destino
   while (nodoActual.nombre !== destino) {
     // Obtenemos el nodo conexion cuyo costo total para ir al nodo destino sea el menor de todos
-    const mejorNodo = obtenerMejorNodo(nodoActual, destino, sentido);
+    const { mejorNodo, nodos } = obtenerMejorNodo(
+      nodoActual,
+      destino,
+      sentido,
+      nodosVisitados
+    );
+
+    // Agregamos los nodos de conexion a la lista de nodos visitados
+    for (const nodo of nodos) nodosVisitados.add(nodo.nombre);
 
     // Si el mejor nodo es undefined (no existe)
     if (mejorNodo === undefined) {
       // Mostramos la ruta parcial y un mensaje indicando que no hay ruta que conecte el nodo origen y el destino
       creaTablaSolucionMsc(
         tabla,
+        [],
         `No existe camino posible entre el nodo ${origen} (origen) y el nodo ${destino} (destino)`
       );
 
@@ -44,16 +57,16 @@ export const MSC = (origen: string, destino: string, sentido: string) => {
       break;
     }
 
-    // Agregamos a la lista ruta el mejor nodo
+    // Agregamos a la lista ruta el mejor nodo y los demas nodos hijos
     ruta.push(mejorNodo.nombre);
 
     // Agregamos a la lista de nodos visitados el mejor nodo
-    tabla.push(mejorNodo);
+    tabla.push(...nodos);
 
     // Hacemos que el nodo actual sea el mejor nodo
     nodoActual = mejorNodo;
   }
 
   // Mostramos la informacion calculada durante el algoritmo
-  creaTablaSolucionMsc(tabla, ruta.join(" → "));
+  creaTablaSolucionMsc(tabla, ruta);
 };
