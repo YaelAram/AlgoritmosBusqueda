@@ -71,7 +71,10 @@ export const BF = (origen: string, destino: string, sentido: string) => {
     const mejorNodo = nodos
       .filter((nodo) => nodo.heuristica <= nodoActual.heuristica) // Filtramos los de menor o igual heuristica
       .sort((nodo1, nodo2) => nodo1.heuristica - nodo2.heuristica) // Ordenamos de menor a mayor
-      .shift()!; // Obtenemos el primer elemento de la lista
+      .shift(); // Obtenemos el primer elemento de la lista
+
+    // Salimos del bucle si no hay un nodo con mejor heuristica que el nodo actual
+    if (!mejorNodo) break;
 
     // Agregamos el mejor nodo a la lista de nodos por visitar
     nodosPorVisitar.push(mejorNodo);
